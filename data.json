@@ -1,74 +1,114 @@
 {
-  "updated_at": "22/11/2026 13:16 UTC",
+  "updated_at": "22/11/2026 13:20 UTC",
   "items": [
     {
-      "title": "Jardin des Balmes : de nouveaux logements abordables à la Croix-Rousse - Métropole de Lyon",
-      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVThCa0ViY1I3SUlLWkFVY0tCaHp5X29IYUJpS18wdGc0aDNQMUxvcV9rTTdZeXZhUEJxckV6UjgzVm5KQnpFSS1lLW9ZTTAwaEdWMlp2SHk3cHBDSldETmY5eHcwdFNTelBta1ktbUpHQlAzU0l5dFUyN21jOFNxWTRoeTJ4blQ4MGtNei05b2NJY29VX0pILVdVTE1wSDUzUHZXZG1rSQ?oc=5",
-      "date": "Thu, 23 Nov 2023 08:00:00 GMT",
-      "source": "Métropole de Lyon",
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
-    },
-    {
-      "title": "\"Un projet de logements 100% abordables\": à la Croix-Rousse, le chantier du jardin des Balmes se poursuit - Lyon Capitale",
-      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPeW5wRjJUaV9ONjBjWmp0Y2ZFVldWWkZPLVRXdVRibHkwVktoZjFBdUZWZ0w4X1I1dnVNVzkwNGd3ajB5U2RyZ0paR0Rna1E1dVVhcllmZnV2Q3cwR0lwOU1NZmRIdHVlUFZWa3BkaFJ0WF9Vd0pxZ0JTbTdzS0VqRWNGNU4wS2s4cVNvblBWc0EwSmpsZkdVR2x5Q29PN0VraDRRMVV5aExMZWdGRFJUbWxEQldsS3hKSHdnYzdxY1J6M2JLd3Z6ek5iVnktVVhQal9uYw?oc=5",
-      "date": "Mon, 18 Aug 2025 07:00:00 GMT",
-      "source": "Lyon Capitale",
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
-    },
-    {
-      "title": "Croix-Rousse : L’ancien collège Maurice-Scève transformé en logements abordables - Tribune de Lyon",
-      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNZUFXQWNnNFdHT24ySUlGeDY0RGlmYXF1Y1NLNzUyN2M4UVFwTmhiTU4wSW1TekY3QW5OcVFUWDE5Und5OFZ0VTJnNzd5MWJNQ2pYZ0ZOVnlVNmlZRVJpT0RzbU5ZNk1XM1BDWU0zWFJfQ0R4VzVCaUpQaEM0cGJ4OWw1bTIxaVNnT3ptNmhacHJJXzRVY0VjZ2t6Nzk4RFhLTWFEWTFjaU5YR2paWjVlY1hYUUJZdWRUSUpyMg?oc=5",
-      "date": "Tue, 21 Nov 2023 08:00:00 GMT",
-      "source": "Tribune de Lyon",
+      "title": "Jardin des Balmes : des logements abordables à la Croix-Rousse - Lyon Demain",
+      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE41b0QyT0FFbFd4blpUMUY1NjZLQzFQYTQzeWxEazJ1VW5FR0FNdWFmUGsxekNFZWUtY3RwcEFtdkZDTnY3RnpuSGJyQXRSeU8wR3BLNmlOYVRTTTdIWWx2bDJSaFFDTzVQUEQ1ejVHYw?oc=5",
+      "timestamp": 1756450800,
+      "date": "29/08/2025 à 07:00",
+      "source": "Lyon Demain",
+      "tags": [
+        "Croix-Rousse"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Lyon 4e. Le collège Maurice-Scève cède la place à du logement 100% aidé - Tribune de Lyon",
       "url": "https://news.google.com/rss/articles/CBMitwFBVV95cUxPMElubTlicmRTaHdOcHp0OGMxdm9jeDh0djR2dGdTbTJYUi1HUGhNbmxxREtpSG9pbzRqcFRZMGV3M3d4eWRwUmU1TXVvUl9wRVBwYVp4alVFMklCNGVrZVduU1lHeVhpV1pZMWx6VEZpQ0IxNlpZTkZwbTdhSjZCYjNGSnpoVTN3YUVOZkVIYVNqZ3dQdTRTSXNraHdxSER6SUszbVA5dmNEM0pvbzBXM25OOVNvNmc?oc=5",
-      "date": "Tue, 19 Aug 2025 07:00:00 GMT",
+      "timestamp": 1755586800,
+      "date": "19/08/2025 à 07:00",
       "source": "Tribune de Lyon",
+      "tags": [
+        "69004 (Plateau)"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
-      "title": "Lyon 4e. Les habitants se rebellent contre la densification du quartier Pernon - Tribune de Lyon",
-      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQWWxueElfWlI5Qk5yQ1owWG1OZWphdHdBTm0xTFQ4Nkp5Nmxfc0FncWo0MzVJSVI0dWhiYzJXbWl4b1VKV2ZYanhEejMwbXFfSDE1Q19RZXFiMlB0RFFmaVloQnZRV2ZIalBYbldsOW5ZdTZINklpY19ERVJwSHpiNkRORDZZSmwzd1ZwNldQeGVtWnZYTWY4cTBPeWJJRWVOQzB1WF9xNVJxREI3UG5rU3JOanNlbjR1LUhGN0Fn?oc=5",
-      "date": "Tue, 14 Mar 2023 07:00:00 GMT",
-      "source": "Tribune de Lyon",
+      "title": "\"Un projet de logements 100% abordables\": à la Croix-Rousse, le chantier du jardin des Balmes se poursuit - Lyon Capitale",
+      "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxPeW5wRjJUaV9ONjBjWmp0Y2ZFVldWWkZPLVRXdVRibHkwVktoZjFBdUZWZ0w4X1I1dnVNVzkwNGd3ajB5U2RyZ0paR0Rna1E1dVVhcllmZnV2Q3cwR0lwOU1NZmRIdHVlUFZWa3BkaFJ0WF9Vd0pxZ0JTbTdzS0VqRWNGNU4wS2s4cVNvblBWc0EwSmpsZkdVR2x5Q29PN0VraDRRMVV5aExMZWdGRFJUbWxEQldsS3hKSHdnYzdxY1J6M2JLd3Z6ek5iVnktVVhQal9uYw?oc=5",
+      "timestamp": 1755500400,
+      "date": "18/08/2025 à 07:00",
+      "source": "Lyon Capitale",
+      "tags": [
+        "Croix-Rousse"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
-      "title": "Jardin des Balmes : des logements abordables à la Croix-Rousse - Lyon Demain",
-      "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE41b0QyT0FFbFd4blpUMUY1NjZLQzFQYTQzeWxEazJ1VW5FR0FNdWFmUGsxekNFZWUtY3RwcEFtdkZDTnY3RnpuSGJyQXRSeU8wR3BLNmlOYVRTTTdIWWx2bDJSaFFDTzVQUEQ1ejVHYw?oc=5",
-      "date": "Fri, 29 Aug 2025 07:00:00 GMT",
-      "source": "Lyon Demain",
+      "title": "Jardin des Balmes : de nouveaux logements abordables à la Croix-Rousse - Métropole de Lyon",
+      "url": "https://news.google.com/rss/articles/CBMipwFBVV95cUxQVThCa0ViY1I3SUlLWkFVY0tCaHp5X29IYUJpS18wdGc0aDNQMUxvcV9rTTdZeXZhUEJxckV6UjgzVm5KQnpFSS1lLW9ZTTAwaEdWMlp2SHk3cHBDSldETmY5eHcwdFNTelBta1ktbUpHQlAzU0l5dFUyN21jOFNxWTRoeTJ4blQ4MGtNei05b2NJY29VX0pILVdVTE1wSDUzUHZXZG1rSQ?oc=5",
+      "timestamp": 1700726400,
+      "date": "23/11/2023 à 08:00",
+      "source": "Métropole de Lyon",
+      "tags": [
+        "Croix-Rousse"
+      ],
+      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+    },
+    {
+      "title": "Croix-Rousse : L’ancien collège Maurice-Scève transformé en logements abordables - Tribune de Lyon",
+      "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxNZUFXQWNnNFdHT24ySUlGeDY0RGlmYXF1Y1NLNzUyN2M4UVFwTmhiTU4wSW1TekY3QW5OcVFUWDE5Und5OFZ0VTJnNzd5MWJNQ2pYZ0ZOVnlVNmlZRVJpT0RzbU5ZNk1XM1BDWU0zWFJfQ0R4VzVCaUpQaEM0cGJ4OWw1bTIxaVNnT3ptNmhacHJJXzRVY0VjZ2t6Nzk4RFhLTWFEWTFjaU5YR2paWjVlY1hYUUJZdWRUSUpyMg?oc=5",
+      "timestamp": 1700553600,
+      "date": "21/11/2023 à 08:00",
+      "source": "Tribune de Lyon",
+      "tags": [
+        "Croix-Rousse"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Croix-Rousse : la majorité lance son projet « contre la gentrification » sur l'ex collège Maurice-Scève - Rue89 Lyon",
       "url": "https://news.google.com/rss/articles/CBMimAFBVV95cUxQaHU5N1l6RUwtYXZrV3JUYzFoeTc2NF9QbEN4c2xxM3p2bEVPcDlqcUNmTGVwSlBLVllYd2NycUo5YTZrZnV1cE11MVlmSFJjLXE3dHJ0TlVpdnI3QVBxeVdET25jZEItNHRYSEdYalFkOURraW5CQnBXQlVWT3lmSEd6NVJEcS1jN2JyMk96Vld5aGstSUJXag?oc=5",
-      "date": "Tue, 21 Nov 2023 08:00:00 GMT",
+      "timestamp": 1700553600,
+      "date": "21/11/2023 à 08:00",
       "source": "Rue89 Lyon",
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
-    },
-    {
-      "title": "Croix-Rousse : à quoi va ressembler le remplaçant du collège Maurice-Scève - Tribune de Lyon",
-      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPdFVtVm5oeWVZUk1MYlRFenNkWXB6VDJqa3h5czJYbkRibDdMUDQzaHVYQ0x3SldVRC1OSW40ekVqWHpTaHF1OERKa1piNmExTDJjcWxnM1pnWkF1Slo5QUhmeDhiQk44ZHg2YnhsQUVtRGRKSUhiemJFYnlHV3NaY0ZfazlObHptZE5xYjg5ZGlxcUotWkZXVnhaNmpVd1hYOXVVYlNjRlFVYTVXVTJYSTUwUDljX2JRZmMw?oc=5",
-      "date": "Thu, 29 Sep 2022 07:00:00 GMT",
-      "source": "Tribune de Lyon",
+      "tags": [
+        "Croix-Rousse"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Lyon. 67 logements abordables mis en vente à la Croix-Rousse pour lutter contre la gentrification du quartier - Le Progrès",
       "url": "https://news.google.com/rss/articles/CBMihwJBVV95cUxPUkpkdU1VWThPVUJEMlZlRVIxNzM3dURYTlQ2ZVlfZllja3gxdDNZaURpV2xNamI5bi1UZzQ1TUIzbXZMVTNqcjV0Z1pmY0prYVRZTHJrRzZZdVRNVm01LTNzZ01OUm0zVEc0d3B4T19WV1k1a0NEZjBfNUJJaGNyMGhtVzNxUGFDUGtzZGNaZnN6X1RYdUdYcEl3UTJVSG5LN3lvRmVFU2lRRWlVYm0wOGxoRHpJTEk3bk1MMW1jTks3c2pQX1NRcE5GQzk0NWpzVFNybmltcFhNNXFzWl9KNzZYOVlkSk9USmV2RGJTWEs1TnkzY3lldkx4MkNhcDRfYU82MW9hRQ?oc=5",
-      "date": "Mon, 20 Nov 2023 08:00:00 GMT",
+      "timestamp": 1700467200,
+      "date": "20/11/2023 à 08:00",
       "source": "Le Progrès",
+      "tags": [
+        "Croix-Rousse"
+      ],
+      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+    },
+    {
+      "title": "Lyon 4e. Les habitants se rebellent contre la densification du quartier Pernon - Tribune de Lyon",
+      "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQWWxueElfWlI5Qk5yQ1owWG1OZWphdHdBTm0xTFQ4Nkp5Nmxfc0FncWo0MzVJSVI0dWhiYzJXbWl4b1VKV2ZYanhEejMwbXFfSDE1Q19RZXFiMlB0RFFmaVloQnZRV2ZIalBYbldsOW5ZdTZINklpY19ERVJwSHpiNkRORDZZSmwzd1ZwNldQeGVtWnZYTWY4cTBPeWJJRWVOQzB1WF9xNVJxREI3UG5rU3JOanNlbjR1LUhGN0Fn?oc=5",
+      "timestamp": 1678777200,
+      "date": "14/03/2023 à 07:00",
+      "source": "Tribune de Lyon",
+      "tags": [
+        "69004 (Plateau)"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "105 nouveaux logements abordables à la Croix-Rousse - Métropole de Lyon",
       "url": "https://news.google.com/rss/articles/CBMifEFVX3lxTE04NXkxU3R6SzFrWERjU0JKZzRnM25JLXJrZjJwT2NtVzJjN25JdGVPazFtT1JRNmZ0TlZ3dTJUdTlvc2c1ejVBRm94Ti1QNS1XanZILXkyU1FqNmdWN1VNUnkybzRfWmVXVjZXU0hRejVENVk0RHByTW9qd2c?oc=5",
-      "date": "Tue, 11 Oct 2022 07:00:00 GMT",
+      "timestamp": 1665471600,
+      "date": "11/10/2022 à 07:00",
       "source": "Métropole de Lyon",
+      "tags": [
+        "Croix-Rousse"
+      ],
+      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+    },
+    {
+      "title": "Croix-Rousse : à quoi va ressembler le remplaçant du collège Maurice-Scève - Tribune de Lyon",
+      "url": "https://news.google.com/rss/articles/CBMiuwFBVV95cUxPdFVtVm5oeWVZUk1MYlRFenNkWXB6VDJqa3h5czJYbkRibDdMUDQzaHVYQ0x3SldVRC1OSW40ekVqWHpTaHF1OERKa1piNmExTDJjcWxnM1pnWkF1Slo5QUhmeDhiQk44ZHg2YnhsQUVtRGRKSUhiemJFYnlHV3NaY0ZfazlObHptZE5xYjg5ZGlxcUotWkZXVnhaNmpVd1hYOXVVYlNjRlFVYTVXVTJYSTUwUDljX2JRZmMw?oc=5",
+      "timestamp": 1664434800,
+      "date": "29/09/2022 à 07:00",
+      "source": "Tribune de Lyon",
+      "tags": [
+        "Croix-Rousse"
+      ],
       "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
     }
   ]
