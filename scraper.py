@@ -8,11 +8,11 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from email.utils import parsedate_to_datetime
 
-# 1. SOURCES PRESSE / WEB (Google News RSS)
+# 1. REQUÊTES WEB RÉCENTES UNIQUEMENT (when:60d limite aux 60 derniers jours)
 QUERIES = [
-    '"BRS" ("Croix-Rousse" OR "Lyon 4" OR "Lyon 1" OR "69004" OR "69001") -Caluire -Saint-Clair',
-    '"Bail Réel Solidaire" ("Croix-Rousse" OR "Lyon 4" OR "Lyon 1") -Caluire -Saint-Clair',
-    '("programme neuf" OR "construction") ("Croix-Rousse" OR "69004" OR "69001") ("T4" OR "BRS") -Caluire -Saint-Clair',
+    '"BRS" ("Croix-Rousse" OR "Lyon 4" OR "Lyon 1" OR "69004" OR "69001") -Caluire -Saint-Clair when:60d',
+    '"Bail Réel Solidaire" ("Croix-Rousse" OR "Lyon 4" OR "Lyon 1") -Caluire -Saint-Clair when:60d',
+    '("nouveau programme" OR "lancement commercial" OR "prochainement") ("Croix-Rousse" OR "69004" OR "69001") -Caluire -Saint-Clair when:60d',
 ]
 
 # 2. SITES DIRECTS DES ORGANISMES BRS & PROMOTEURS LOCAUX
@@ -63,7 +63,23 @@ INCLUDE_ZONES = [
     "croix-rousse", "croix rousse", "69004", "69001",
     "lyon 4", "lyon 1", "lyon-4", "lyon-1", "pentes", "plateau"
 ]
-EXCLUDE_WORDS = ["caluire", "saint-clair", "saint clair", "montessuy", "cuire"]
+
+# Secteurs et anciens programmes déjà connus/vendus à écarter
+EXCLUDE_WORDS = [
+    "caluire", "saint-clair", "saint clair", "montessuy", "cuire",
+    "jardin des balmes", "maurice-scève", "maurice sceve", "maurice-sceve"
+]
+
+# Mentions sur une fiche programme indiquant qu'il n'y a plus rien à vendre
+SOLD_OUT_MARKERS = [
+    "tout vendu", "100% vendu", "100 % vendu", "tous vendus",
+    "commercialisation terminée", "commercialisation terminee",
+    "plus de lots disponibles", "programme épuisé", "programme epuise",
+    "aucun lot disponible", "réservé à 100%", "reserve a 100%"
+]
+
+# Âge maximum des articles de presse en jours (évite les vieux articles de 2022/2023/2025)
+MAX_NEWS_AGE_DAYS = 45
 
 
 def matches_rules(text: str) -> bool:
@@ -86,7 +102,7 @@ def detect_tags(text: str, source_type: str = "") -> list[str]:
         tags.append("69004 (Plateau)")
     if "69001" in t or "lyon 1" in t or "lyon-1" in t or "pentes" in t:
         tags.append("69001 (Pentes)")
-    if "t4" in t or "4 pièces" in t or "4 pieces" in t:
+    if re.search(r"\bt4\b|4\s*pi[èe]ces", t):
         tags.append("T4")
     return list(dict.fromkeys(tags)) or ["Croix-Rousse"]
 
@@ -103,7 +119,6 @@ def parse_pub_date(pub_date_str: str):
 
 
 def load_existing_items() -> dict:
-    """Conserve la date exacte de première apparition des liens déjà détectés."""
     if not os.path.exists("data.json"):
         return {}
     try:
@@ -114,31 +129,16 @@ def load_existing_items() -> dict:
         return {}
 
 
-def fetch_rss(query: str):
-    encoded = urllib.parse.quote(query)
-    url = f"https://news.google.com/rss/search?q={encoded}&hl=fr&gl=FR&ceid=FR:fr"
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-    items = []
+def fetch_url_text(url: str) -> str:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36",
+            "Accept-Language": "fr-FR,fr;q=0.9"
+        }
+    )
     with urllib.request.urlopen(req, timeout=15) as resp:
-        xml_data = resp.read()
-    root = ET.fromstring(xml_data)
-    for item in root.findall("./channel/item"):
-        title = item.findtext("title") or ""
-        link = item.findtext("link") or ""
-        pub_date = item.findtext("pubDate") or ""
-        source = item.findtext("source") or "Web / Presse"
-        if matches_rules(title):
-            ts, formatted_date = parse_pub_date(pub_date)
-            items.append({
-                "title": title.strip(),
-                "url": link.strip(),
-                "timestamp": ts,
-                "date": formatted_date,
-                "source": source,
-                "tags": detect_tags(title, "Presse"),
-                "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
-            })
-    return items
+        return resp.read().decode("utf-8", errors="ignore")
 
 
 def clean_html_text(raw_html: str) -> str:
@@ -147,42 +147,97 @@ def clean_html_text(raw_html: str) -> str:
     return re.sub(r"\s+", " ", unescaped).strip()
 
 
-def fetch_promoter_page(site: dict, existing_map: dict):
-    req = urllib.request.Request(
-        site["url"],
-        headers={
-            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/124.0 Safari/537.36",
-            "Accept-Language": "fr-FR,fr;q=0.9"
-        }
-    )
-    with urllib.request.urlopen(req, timeout=20) as resp:
-        page_html = resp.read().decode("utf-8", errors="ignore")
+def inspect_program_detail(url: str) -> dict:
+    """Ouvre la page du programme chez le promoteur pour vérifier s'il est vendu ou si un T4 est cité."""
+    try:
+        detail_html = fetch_url_text(url)
+        detail_text = clean_html_text(detail_html).lower()
 
+        if any(bad in detail_text for bad in EXCLUDE_WORDS):
+            return {"valid": False}
+        if any(sold in detail_text for sold in SOLD_OUT_MARKERS):
+            return {"valid": False}
+
+        has_t4 = bool(re.search(r"\bt4\b|4\s*pi[èe]ces", detail_text))
+        has_brs = ("brs" in detail_text) or ("bail réel solidaire" in detail_text)
+        return {"valid": True, "has_t4": has_t4, "has_brs": has_brs}
+    except Exception:
+        # Si la page bloque le robot secondaire, on garde le lien par précaution
+        return {"valid": True, "has_t4": False, "has_brs": False}
+
+
+def fetch_rss(query: str):
+    encoded = urllib.parse.quote(query)
+    url = f"https://news.google.com/rss/search?q={encoded}&hl=fr&gl=FR&ceid=FR:fr"
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    items = []
+    now_ts = int(datetime.now(timezone.utc).timestamp())
+    max_age_sec = MAX_NEWS_AGE_DAYS * 86400
+
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        xml_data = resp.read()
+    root = ET.fromstring(xml_data)
+
+    for item in root.findall("./channel/item"):
+        title = item.findtext("title") or ""
+        link = item.findtext("link") or ""
+        pub_date = item.findtext("pubDate") or ""
+        source = item.findtext("source") or "Web / Presse"
+
+        if not matches_rules(title):
+            continue
+
+        ts, formatted_date = parse_pub_date(pub_date)
+        # Filtre strict sur la fraîcheur de l'article
+        if (now_ts - ts) > max_age_sec:
+            continue
+
+        items.append({
+            "title": title.strip(),
+            "url": link.strip(),
+            "timestamp": ts,
+            "date": formatted_date,
+            "source": source,
+            "tags": detect_tags(title, "Presse"),
+            "summary": "Actualité récente sur le périmètre Croix-Rousse (69004 / 69001)."
+        })
+    return items
+
+
+def fetch_promoter_page(site: dict, existing_map: dict):
+    page_html = fetch_url_text(site["url"])
     items = []
     now = datetime.now(timezone.utc)
     now_ts = int(now.timestamp())
     now_str = now.strftime("%d/%m/%Y à %H:%M")
 
-    # Extraction de tous les blocs <a href="...">...</a>
     links = re.findall(r'<a\s+[^>]*href=["\']([^"\']+)["\'][^>]*>(.*?)</a>', page_html, flags=re.IGNORECASE | re.DOTALL)
 
     for href, inner_html in links:
         text = clean_html_text(inner_html)
         combined = f"{text} {href}"
 
-        # Ignore les liens vides, ancres ou menus génériques
         if len(text) < 6 or href.startswith("#") or href.startswith("mailto:") or href.startswith("tel:"):
             continue
 
         if matches_rules(combined):
             full_url = urllib.parse.urljoin(site["base"], href)
-            # Si déjà vu lors d'un précédent passage, on garde sa date d'apparition d'origine
+            detail = inspect_program_detail(full_url)
+            if not detail.get("valid", True):
+                continue
+
             if full_url in existing_map:
                 ts = existing_map[full_url]["timestamp"]
                 date_str = existing_map[full_url]["date"]
             else:
                 ts = now_ts
                 date_str = f"Détecté le {now_str}"
+
+            tags = detect_tags(f"{site['name']} {combined}", "Promoteur")
+            if detail.get("has_t4") and "T4" not in tags:
+                tags.append("T4")
+            if detail.get("has_brs") and "BRS" not in tags:
+                tags.append("BRS")
 
             display_title = text if len(text) <= 120 else text[:117] + "..."
             items.append({
@@ -191,8 +246,8 @@ def fetch_promoter_page(site: dict, existing_map: dict):
                 "timestamp": ts,
                 "date": date_str,
                 "source": site["name"],
-                "tags": detect_tags(f"{site['name']} {combined}", "Promoteur"),
-                "summary": f"Programme ou fiche repérée directement sur le site de {site['name']}."
+                "tags": tags,
+                "summary": f"Page active repérée sur {site['name']}."
             })
 
     return items
@@ -203,7 +258,6 @@ def main():
     seen_urls = set()
     results = []
 
-    # 1. Scan direct des sites promoteurs et organismes BRS
     for site in PROMOTER_PAGES:
         try:
             for item in fetch_promoter_page(site, existing_map):
@@ -213,7 +267,6 @@ def main():
         except Exception as e:
             print(f"[Promoteur] Erreur sur {site['name']}: {e}")
 
-    # 2. Scan des flux RSS presse / web
     for q in QUERIES:
         try:
             for item in fetch_rss(q):
@@ -223,7 +276,6 @@ def main():
         except Exception as e:
             print(f"[RSS] Erreur sur requête {q}: {e}")
 
-    # Tri du plus récent au plus ancien
     results.sort(key=lambda x: x["timestamp"], reverse=True)
 
     payload = {
