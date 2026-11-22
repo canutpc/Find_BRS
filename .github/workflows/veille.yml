@@ -2,8 +2,8 @@ name: Veille Immobiliere Croix-Rousse
 
 on:
   schedule:
-    - cron: '0 7 * * *'   # Tous les jours à 07:00 UTC
-  workflow_dispatch:       # Permet aussi de lancer un test manuel en 1 clic
+    - cron: '30 6 * * *'  # Tous les jours à 06:30 UTC (~07h30 hiver / 08h30 été à Lyon)
+  workflow_dispatch:       # Permet de tester l'envoi d'e-mail en 1 clic
 
 permissions:
   contents: write
@@ -20,10 +20,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Lancer la veille et filtrer
+      - name: Lancer la veille et envoyer l'e-mail
+        env:
+          EMAIL_SENDER: ${{ secrets.EMAIL_SENDER }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_RECIPIENTS: ${{ secrets.EMAIL_RECIPIENTS }}
         run: python scraper.py
 
-      - name: Sauvegarder les nouveaux résultats
+      - name: Sauvegarder les résultats sur GitHub Pages
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
