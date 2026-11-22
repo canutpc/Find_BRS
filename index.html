@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veille BRS & Neuf — Lyon Croix-Rousse (T4 ~300k€)</title>
+  <style>
+    :root { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #64748b; --accent: #2563eb; --border: #e2e8f0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+    .badge { display: inline-block; background: #dbeafe; color: #1e40af; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-right: 0.4rem; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
+    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.6rem; }
+    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    a:hover { text-decoration: underline; }
+    .empty { text-align: center; padding: 2rem; color: var(--muted); background: var(--card); border-radius: 10px; border: 1px dashed var(--border); }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🏙️ Veille BRS & Neuf — Croix-Rousse</h1>
+    <div>
+      <span class="badge">Plateau (69004) & Pentes (69001)</span>
+      <span class="badge">T4 • ~300 000 €</span>
+      <span class="badge">Hors Caluire / Saint-Clair</span>
+    </div>
+    <p class="meta" id="last-update">Chargement de la dernière vérification...</p>
+  </header>
+
+  <main id="results"></main>
+
+  <script>
+    async function loadVeille() {
+      const container = document.getElementById('results');
+      const updateEl = document.getElementById('last-update');
+      try {
+        const res = await fetch('data.json?t=' + Date.now());
+        const data = await res.json();
+        updateEl.textContent = `Dernière exécution automatique : ${data.updated_at} (${data.items.length} résultat(s))`;
+
+        if (!data.items.length) {
+          container.innerHTML = `<div class="empty">Aucune nouvelle sortie détectée sur le périmètre strict (69004 / 69001) lors du dernier passage.</div>`;
+          return;
+        }
+
+        container.innerHTML = data.items.map(item => `
+          <article class="card">
+            <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
+            <div class="meta">${item.source} • ${item.date || 'Date non précisée'}</div>
+            <p>${item.summary || ''}</p>
+          </article>
+        `).join('');
+      } catch (e) {
+        updateEl.textContent = "En attente de la première exécution de GitHub Actions.";
+        container.innerHTML = `<div class="empty">Le fichier <code>data.json</code> sera généré dès le premier lancement du workflow GitHub.</div>`;
+      }
+    }
+    loadVeille();
+  </script>
+</body>
+</html>
