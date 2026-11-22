@@ -5,16 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Veille BRS & Neuf — Lyon Croix-Rousse (T4 ~300k€)</title>
   <style>
-    :root { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #64748b; --accent: #2563eb; --border: #e2e8f0; }
-    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); max-width: 900px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
-    header { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
-    .badge { display: inline-block; background: #dbeafe; color: #1e40af; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.85rem; font-weight: 600; margin-right: 0.4rem; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
-    .card h3 { margin: 0 0 0.4rem; font-size: 1.1rem; }
-    .meta { color: var(--muted); font-size: 0.9rem; margin-bottom: 0.6rem; }
-    a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    :root { --bg: #f8fafc; --card: #ffffff; --text: #0f172a; --muted: #64748b; --accent: #2563eb; --accent-soft: #dbeafe; --border: #e2e8f0; }
+    body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); max-width: 960px; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+    header { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.25rem; }
+    .badge { display: inline-block; background: var(--accent-soft); color: #1e40af; padding: 0.2rem 0.6rem; border-radius: 999px; font-size: 0.82rem; font-weight: 600; margin-right: 0.4rem; margin-bottom: 0.3rem; }
+    .controls { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; margin-bottom: 1.25rem; display: flex; flex-direction: column; gap: 0.8rem; }
+    .controls-row { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: center; }
+    input[type="search"], select { padding: 0.5rem 0.75rem; border: 1px solid var(--border); border-radius: 8px; font-size: 0.92rem; background: #fff; color: var(--text); }
+    input[type="search"] { flex: 1; min-width: 220px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .chip { border: 1px solid var(--border); background: #f1f5f9; color: var(--text); padding: 0.35rem 0.75rem; border-radius: 999px; font-size: 0.85rem; cursor: pointer; font-weight: 500; transition: all 0.15s; }
+    .chip:hover { border-color: var(--accent); }
+    .chip.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.15rem; margin-bottom: 0.9rem; box-shadow: 0 1px 2px rgba(0,0,0,0.04); }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.75rem; flex-wrap: wrap; }
+    .card h3 { margin: 0 0 0.35rem; font-size: 1.08rem; }
+    .date-pill { font-size: 0.8rem; background: #f1f5f9; color: #334155; padding: 0.2rem 0.55rem; border-radius: 6px; white-space: nowrap; font-weight: 600; }
+    .meta { color: var(--muted); font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .tag { display: inline-block; font-size: 0.76rem; padding: 0.15rem 0.5rem; border-radius: 5px; background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; margin-right: 0.35rem; font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; font-weight: 600; }
     a:hover { text-decoration: underline; }
     .empty { text-align: center; padding: 2rem; color: var(--muted); background: var(--card); border-radius: 10px; border: 1px dashed var(--border); }
+    .count-bar { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.75rem; }
   </style>
 </head>
 <body>
@@ -28,34 +40,110 @@
     <p class="meta" id="last-update">Chargement de la dernière vérification...</p>
   </header>
 
+  <section class="controls">
+    <div class="controls-row">
+      <input type="search" id="search-input" placeholder="Filtrer par mot-clé, promoteur, rue..." />
+      <select id="period-select">
+        <option value="all">Toutes les dates</option>
+        <option value="7">7 derniers jours</option>
+        <option value="30">30 derniers jours</option>
+        <option value="90">3 derniers mois</option>
+      </select>
+      <select id="sort-select">
+        <option value="desc">Trier : Plus récent d'abord</option>
+        <option value="asc">Trier : Plus ancien d'abord</option>
+      </select>
+    </div>
+    <div class="chips" id="tag-filters">
+      <button class="chip active" data-tag="ALL">Tout afficher</button>
+      <button class="chip" data-tag="BRS">BRS</button>
+      <button class="chip" data-tag="Neuf">Neuf</button>
+      <button class="chip" data-tag="69004 (Plateau)">69004 (Plateau)</button>
+      <button class="chip" data-tag="69001 (Pentes)">69001 (Pentes)</button>
+      <button class="chip" data-tag="T4">T4</button>
+    </div>
+  </section>
+
+  <div class="count-bar" id="count-bar"></div>
   <main id="results"></main>
 
   <script>
-    async function loadVeille() {
+    let allItems = [];
+    let activeTag = 'ALL';
+
+    function render() {
       const container = document.getElementById('results');
+      const countBar = document.getElementById('count-bar');
+      const query = document.getElementById('search-input').value.trim().toLowerCase();
+      const sortOrder = document.getElementById('sort-select').value;
+      const periodDays = document.getElementById('period-select').value;
+      const nowSec = Math.floor(Date.now() / 1000);
+
+      let filtered = allItems.filter(item => {
+        if (activeTag !== 'ALL' && !(item.tags || []).includes(activeTag)) return false;
+        if (periodDays !== 'all' && item.timestamp) {
+          const maxAge = parseInt(periodDays, 10) * 86400;
+          if ((nowSec - item.timestamp) > maxAge) return false;
+        }
+        if (query) {
+          const hay = `${item.title} ${item.source} ${item.summary || ''}`.toLowerCase();
+          if (!hay.includes(query)) return false;
+        }
+        return true;
+      });
+
+      filtered.sort((a, b) => {
+        const ta = a.timestamp || 0;
+        const tb = b.timestamp || 0;
+        return sortOrder === 'desc' ? tb - ta : ta - tb;
+      });
+
+      countBar.textContent = `${filtered.length} résultat(s) affiché(s) sur ${allItems.length}`;
+
+      if (!filtered.length) {
+        container.innerHTML = `<div class="empty">Aucun résultat ne correspond à vos filtres actuels.</div>`;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => `
+        <article class="card">
+          <div class="card-header">
+            <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
+            <span class="date-pill">📅 ${item.date || 'Date inconnue'}</span>
+          </div>
+          <div class="meta">Source : ${item.source}</div>
+          <div>${(item.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</div>
+        </article>
+      `).join('');
+    }
+
+    document.getElementById('search-input').addEventListener('input', render);
+    document.getElementById('sort-select').addEventListener('change', render);
+    document.getElementById('period-select').addEventListener('change', render);
+
+    document.getElementById('tag-filters').addEventListener('click', (e) => {
+      if (!e.target.classList.contains('chip')) return;
+      document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+      e.target.classList.add('active');
+      activeTag = e.target.dataset.tag;
+      render();
+    });
+
+    async function loadVeille() {
       const updateEl = document.getElementById('last-update');
+      const container = document.getElementById('results');
       try {
         const res = await fetch('data.json?t=' + Date.now());
         const data = await res.json();
-        updateEl.textContent = `Dernière exécution automatique : ${data.updated_at} (${data.items.length} résultat(s))`;
-
-        if (!data.items.length) {
-          container.innerHTML = `<div class="empty">Aucune nouvelle sortie détectée sur le périmètre strict (69004 / 69001) lors du dernier passage.</div>`;
-          return;
-        }
-
-        container.innerHTML = data.items.map(item => `
-          <article class="card">
-            <h3><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></h3>
-            <div class="meta">${item.source} • ${item.date || 'Date non précisée'}</div>
-            <p>${item.summary || ''}</p>
-          </article>
-        `).join('');
+        allItems = data.items || [];
+        updateEl.textContent = `Dernière exécution automatique : ${data.updated_at}`;
+        render();
       } catch (e) {
         updateEl.textContent = "En attente de la première exécution de GitHub Actions.";
-        container.innerHTML = `<div class="empty">Le fichier <code>data.json</code> sera généré dès le premier lancement du workflow GitHub.</div>`;
+        container.innerHTML = `<div class="empty">Relancez le workflow GitHub Actions pour générer le nouveau format de <code>data.json</code>.</div>`;
       }
     }
+
     loadVeille();
   </script>
 </body>
