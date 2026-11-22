@@ -1,6 +1,29 @@
 {
-  "updated_at": "22/11/2026 13:20 UTC",
+  "updated_at": "22/11/2026 13:26 UTC",
+  "monitored_promoters": [
+    "Foncière Solidaire du Grand Lyon",
+    "GrandLyon Habitat (Accession)",
+    "Rhône Saône Habitat (BRS / Neuf)",
+    "Alliade Habitat (Accession)",
+    "Est Métropole Habitat (Accession)",
+    "Nexity (Neuf Lyon 4e)",
+    "Nexity (Neuf Lyon 1er)",
+    "Bouygues Immobilier (Lyon 4e)"
+  ],
   "items": [
+    {
+      "title": "[GrandLyon Habitat (Accession)] À vendre à Lyon 4e Croix Rousse",
+      "url": "https://www.grandlyonhabitat.fr/je-cherche-un-bien/devenir-proprietaire/a-vendre-appartement-neuf-a-lyon-4e-croix-rousse/",
+      "timestamp": 1795353990,
+      "date": "Détecté le 22/11/2026 à 13:26",
+      "source": "GrandLyon Habitat (Accession)",
+      "tags": [
+        "Site Promoteur",
+        "Neuf",
+        "69004 (Plateau)"
+      ],
+      "summary": "Programme ou fiche repérée directement sur le site de GrandLyon Habitat (Accession)."
+    },
     {
       "title": "Jardin des Balmes : des logements abordables à la Croix-Rousse - Lyon Demain",
       "url": "https://news.google.com/rss/articles/CBMib0FVX3lxTE41b0QyT0FFbFd4blpUMUY1NjZLQzFQYTQzeWxEazJ1VW5FR0FNdWFmUGsxekNFZWUtY3RwcEFtdkZDTnY3RnpuSGJyQXRSeU8wR3BLNmlOYVRTTTdIWWx2bDJSaFFDTzVQUEQ1ejVHYw?oc=5",
@@ -10,7 +33,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Lyon 4e. Le collège Maurice-Scève cède la place à du logement 100% aidé - Tribune de Lyon",
@@ -21,7 +44,7 @@
       "tags": [
         "69004 (Plateau)"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "\"Un projet de logements 100% abordables\": à la Croix-Rousse, le chantier du jardin des Balmes se poursuit - Lyon Capitale",
@@ -32,7 +55,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Jardin des Balmes : de nouveaux logements abordables à la Croix-Rousse - Métropole de Lyon",
@@ -43,7 +66,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Croix-Rousse : L’ancien collège Maurice-Scève transformé en logements abordables - Tribune de Lyon",
@@ -54,7 +77,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Croix-Rousse : la majorité lance son projet « contre la gentrification » sur l'ex collège Maurice-Scève - Rue89 Lyon",
@@ -65,7 +88,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Lyon. 67 logements abordables mis en vente à la Croix-Rousse pour lutter contre la gentrification du quartier - Le Progrès",
@@ -76,7 +99,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Lyon 4e. Les habitants se rebellent contre la densification du quartier Pernon - Tribune de Lyon",
@@ -87,7 +110,7 @@
       "tags": [
         "69004 (Plateau)"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "105 nouveaux logements abordables à la Croix-Rousse - Métropole de Lyon",
@@ -98,7 +121,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     },
     {
       "title": "Croix-Rousse : à quoi va ressembler le remplaçant du collège Maurice-Scève - Tribune de Lyon",
@@ -109,7 +132,7 @@
       "tags": [
         "Croix-Rousse"
       ],
-      "summary": "Correspondance détectée sur le périmètre Croix-Rousse (69004 / 69001)."
+      "summary": "Article ou annonce détecté sur le périmètre Croix-Rousse (69004 / 69001)."
     }
   ]
 }
